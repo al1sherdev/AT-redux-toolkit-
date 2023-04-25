@@ -1,0 +1,2 @@
+export const logo = 'https://cdn1.vectorstock.com/i/1000x1000/72/10/at-a-t-black-white-grey-alphabet-letter-logo-icon-vector-17957210.jpg'  
+export const logoMain = 'https://cdn1.vectorstock.com/i/1000x1000/72/10/at-a-t-black-white-grey-alphabet-letter-logo-icon-vector-17957210.jpg'  
