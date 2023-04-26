@@ -2,17 +2,17 @@ import React from 'react'
 
 const Input = ({ label, state, setState, type }) => {
   return (
-        <div class="form-floating">
+        <div className="form-floating">
             <input 
                 type={type} 
                 value={state}
                 onChange={e => setState(e.target.value)}
-                class="form-control" 
+                className="form-control" 
                 id="floatingInput" 
                 placeholder={label} 
-
+                autoComplete="off"
             />
-            <label for="floatingInput">{label}</label>
+            <label htmlFor="floatingInput">{label}</label>
         </div>
   )
 }
