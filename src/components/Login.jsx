@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logo } from '../assets/index';
-import { loginUserStart } from '../slice/auth';
+import AuthService from '../service/auth';
+import { signUserFailed, signUserStart, signUserSuccess } from '../slice/auth';
 import Input from '../ui/input';
+import ValidationError from './ValidationError';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch()
-  const {isLoading} = useSelector(state => state.auth)
+  const {isLoading, loggedIn} = useSelector(state => state.auth)
+  const navigate = useNavigate()
 
-  const loginHandler = (e) => {
+  const loginHandler = async(e) => {
     e.preventDefault()
-    dispatch(loginUserStart())
+    dispatch(signUserStart())
+    const user = {email, password}
+    try {
+      const response = await AuthService.userLogin(user)
+      dispatch(signUserSuccess(response.user))
+      navigate('/')
+    } catch (error) {
+      dispatch(signUserFailed(error.response.data.errors))
+    }
   }
+
+  useEffect(() => {
+    if(loggedIn) {
+      navigate('/')
+    }
+  }, [loggedIn])
 
   return (
     <div className='text-center'>
@@ -21,6 +39,7 @@ const Login = () => {
         <form>
             <img className="mb-4" src={logo} alt="" width="72" height="60" />
             <h1 className="h3 mb-3 fw-normal">Please login</h1>
+            <ValidationError />
 
             <Input label={"Email address"} state={email} setState={setEmail} type={"email"} />
             <Input label={"Password"} state={password} setState={setPassword} type={"password"} />

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setItem } from "../helpers/persistance";
 
 const initialState = {
     isLoading: false,
@@ -11,27 +12,26 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        // Login
-        loginUserStart: state => {
+        // Sign project
+        signUserStart: state => {
             state.isLoading = true
         },
-        loginUserSuccess: state => {},
-        loginUserFailed: state => {},
-
-        // Register
-        registerUserStart: state => {
-            state.isLoading = true
-        },
-        registerUserSuccess: state => {
+        signUserSuccess: (state, action) => {
             state.isLoading = false
             state.loggedIn = true 
+            state.user = action.payload
+            setItem('token', action.payload.token)
         },
-        registerUserFailed: state => {
-            state.error = 'error',
+        signUserFailed: (state, action) => {
             state.isLoading = false
+            state.error = action.payload
         },
+        logoutUser: state => {
+            state.user = null
+            state.loggedIn = false
+        }
     }
 })
 
-export const { loginUserStart, registerUserStart, registerUserSuccess, registerUserFailed } = authSlice.actions
+export const { signUserStart, signUserSuccess, signUserFailed, logoutUser } = authSlice.actions
 export default authSlice.reducer
