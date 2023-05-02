@@ -1,16 +1,18 @@
-import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { getItem } from './helpers/persistance';
+import ArticleService from './service/article';
+import AuthService from './service/auth';
+import { signUserSuccess } from './slice/auth';
+import { getArticlesStart, getArticlesSucces } from './slice/article';
+
+// components
+import ArticleDetail from './components/ArticleDetail';
 import Login from './components/Login';
 import Main from './components/main';
 import Navbar from './components/Navbar';
 import Register from './components/Register';
-import { getItem } from './helpers/persistance';
-import ArticleService from './service/article';
-import AuthService from './service/auth';
-import { getArticlesStart, getArticlesSucces } from './slice/article';
-import { signUserSuccess } from './slice/auth';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -47,11 +49,14 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route path='/' element={ <Main /> } />
-        <Route path='/login' element={ <Login /> } />
-        <Route path='/register' element={ <Register /> } />
-      </Routes>
+      <div className='container'>
+        <Routes>
+          <Route path='/' element={ <Main /> } />
+          <Route path='/login' element={ <Login /> } />
+          <Route path='/register' element={ <Register /> } />
+          <Route path='/article/:slug' element={ <ArticleDetail /> } />
+        </Routes>
+      </div>
     </div>
   )
 }
