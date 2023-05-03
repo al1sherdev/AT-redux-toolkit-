@@ -13,6 +13,7 @@ import Login from './components/Login';
 import Main from './components/main';
 import Navbar from './components/Navbar';
 import Register from './components/Register';
+import CreateArticle from './components/CreateArticle';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -55,6 +56,7 @@ const App = () => {
           <Route path='/login' element={ <Login /> } />
           <Route path='/register' element={ <Register /> } />
           <Route path='/article/:slug' element={ <ArticleDetail /> } />
+          <Route path='/create-article' element={ <CreateArticle /> } />
         </Routes>
       </div>
     </div>

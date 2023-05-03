@@ -24,7 +24,8 @@ const Navbar = () => {
             <div className="col-4 d-flex justify-content-end align-items-center">
               {loggedIn ? (
                 <>
-                  <h6 className='m-0 mx-2'>{user.username}</h6>
+                  <h6 className='m-0'>{user.username}</h6>
+                  <Link className="mx-3 link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" to="/create-article">Create</Link>
                   <button className='btn btn-outline-danger' onClick={logoutHandler}>Logout</button>
                 </>
               ) : (

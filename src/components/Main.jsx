@@ -14,7 +14,7 @@ const Main = () => {
           {articles.map(item => {
             return (
               <div className="col" key={item.id}>
-                <div className="card shadow-sm">
+                <div className="card h-100 shadow-sm">
                   <svg className="bd-placeholder-img card-img-top" 
                       width="100%" 
                       height="225"  
@@ -26,7 +26,7 @@ const Main = () => {
                   <div className="card-body">
                     <p className="card-text fw-bold">{item.title}</p>
                     <p className="card-text">{item.description}</p>
-                    <div className="card-footer  d-flex justify-content-between align-items-center ">
+                    <div className="card-footer d-flex justify-content-between align-items-center ">
                       <div className="btn-group">
                         <button 
                           type="button" 
