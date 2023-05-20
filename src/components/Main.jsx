@@ -6,8 +6,10 @@ const Main = () => {
   const {articles, isLoading} = useSelector(state => state.article)
   const navigate = useNavigate()
 
+  
+
   return (
-    <div>
+    <>
       {isLoading && <Loader />}
       <div className="album py-5">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -51,7 +53,7 @@ const Main = () => {
           })}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

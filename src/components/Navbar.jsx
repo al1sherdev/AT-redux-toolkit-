@@ -25,7 +25,7 @@ const Navbar = () => {
               {loggedIn ? (
                 <>
                   <h6 className='m-0'>{user.username}</h6>
-                  <Link className="mx-3 link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" to="/create-article">Create</Link>
+                  <Link className="mx-3 link-success link-offset-2 underline" to="/create-article">Create</Link>
                   <button className='btn btn-outline-danger' onClick={logoutHandler}>Logout</button>
                 </>
               ) : (
